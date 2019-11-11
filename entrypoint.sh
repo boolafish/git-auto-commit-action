@@ -32,12 +32,15 @@ then
 
     echo "INPUT_FILE_PATTERN: ${INPUT_FILE_PATTERN}"
 
+    echo "GITHUB ADD starts...";
     git add "${INPUT_FILE_PATTERN}"
 
     echo "INPUT_COMMIT_OPTIONS: ${INPUT_COMMIT_OPTIONS}"
 
+    echo "Github commits...";
     git commit -m "$INPUT_COMMIT_MESSAGE" --author="$GITHUB_ACTOR <$GITHUB_ACTOR@users.noreply.github.com>" ${INPUT_COMMIT_OPTIONS:+"$INPUT_COMMIT_OPTIONS"}
 
+    echo "Github push and set upstream...";
     git push --set-upstream origin "HEAD:$INPUT_BRANCH"
 else
     echo "Working tree clean. Nothing to commit."
